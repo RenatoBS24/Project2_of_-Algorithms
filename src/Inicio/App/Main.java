@@ -1,4 +1,4 @@
-package Inicio.Main;
+package Inicio.App;
 
 import Inicio.PantallaPrincipal.PantallaPrincipal;
 
