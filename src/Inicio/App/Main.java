@@ -12,5 +12,6 @@ public class Main {
         inicio.setSize(1280, 720);
         inicio.setVisible(true);
         inicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        System.out.println("Hola");
     }
 }
