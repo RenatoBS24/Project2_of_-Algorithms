@@ -2,6 +2,9 @@ package Inicio.MySinglyLinkedList;
 
 import java.util.Iterator;
 import java.util.Objects;
+import static java.lang.reflect.Array.newInstance;
+
+import static java.lang.reflect.Array.newInstance;
 
 public class SinglyLinkedList<E> implements Iterable<E> {
 
@@ -190,7 +193,7 @@ public class SinglyLinkedList<E> implements Iterable<E> {
     }
 
     public E[] toArray() {
-        E[] array = (E[]) new Object[size()];
+        E[] array = (E[]) newInstance(head.getElement().getClass(), size());
         Node<E> end = head;
         int index = 0;
         while (end != null) {
