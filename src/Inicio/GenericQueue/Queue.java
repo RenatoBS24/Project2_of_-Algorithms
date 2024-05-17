@@ -1,4 +1,4 @@
-package Inicio.GenericCola;
+package Inicio.GenericQueue;
 
 public class Queue<E> {
 
