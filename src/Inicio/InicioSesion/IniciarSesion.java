@@ -1,6 +1,5 @@
 package Inicio.InicioSesion;
 
-import Inicio.PantallaPrincipal.PantallaPrincipal;
 import Inicio.Registrarse.Registrarse;
 import Inicio.Registrarse.Usuario;
 
@@ -77,13 +76,6 @@ public class IniciarSesion {
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(IniciarSesion);
                 frame.dispose();
-
-                JFrame inicio = new JFrame();
-                PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
-                inicio.setContentPane(pantallaPrincipal.getPantallaPrincipal());
-                inicio.setSize(1280, 720);
-                inicio.setVisible(true);
-                inicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
         });
         verContraseniaCheckBox.addActionListener(new ActionListener() {

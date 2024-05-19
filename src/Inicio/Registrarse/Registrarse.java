@@ -1,7 +1,6 @@
 package Inicio.Registrarse;
 
 import Inicio.InicioSesion.IniciarSesion;
-import Inicio.PantallaPrincipal.PantallaPrincipal;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -80,13 +79,6 @@ public class Registrarse {
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(Registro);
                 frame.dispose();
-
-                JFrame inicio = new JFrame();
-                PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
-                inicio.setContentPane(pantallaPrincipal.getPantallaPrincipal());
-                inicio.setSize(1280, 720);
-                inicio.setVisible(true);
-                inicio.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             }
         });
     }

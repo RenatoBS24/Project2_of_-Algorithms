@@ -55,6 +55,8 @@ public class main_screen extends JFrame {
                 super.mouseMoved(e);
             }
         });
+        s.addMouseListener(new MouseAdapter() {
+        });
     }
     public static void main(String[] args) {
         new main_screen();
