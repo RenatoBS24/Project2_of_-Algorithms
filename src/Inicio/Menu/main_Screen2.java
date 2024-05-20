@@ -30,7 +30,7 @@ public class main_Screen2 extends JFrame {
         }
     }
     private JPanel Panel;
-    private JLabel Kanban;
+    private JTable table1;
     private JTable table;
     public main_Screen2() {
         setContentPane(Panel);

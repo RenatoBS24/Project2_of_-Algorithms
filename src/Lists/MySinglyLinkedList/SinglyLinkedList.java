@@ -1,10 +1,9 @@
-package Inicio.MySinglyLinkedList;
+package Lists.MySinglyLinkedList;
 
 import java.util.Iterator;
 import java.util.Objects;
 import static java.lang.reflect.Array.newInstance;
 
-import static java.lang.reflect.Array.newInstance;
 
 public class SinglyLinkedList<E> implements Iterable<E> {
 

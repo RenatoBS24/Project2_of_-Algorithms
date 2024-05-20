@@ -1,4 +1,4 @@
-package ListasEnlazadas;
+package Lists.ListasEnlazadas;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;

@@ -1,4 +1,4 @@
-package ListasEnlazadas;
+package Lists.ListasEnlazadas;
 
 public class Node <T>{
     private T dato;
