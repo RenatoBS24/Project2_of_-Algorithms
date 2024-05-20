@@ -1,10 +1,7 @@
 package Inicio.Menu.Classes;
 
 import Lists.MySinglyLinkedList.SinglyLinkedList;
-
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-
 import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
