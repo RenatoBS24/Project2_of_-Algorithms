@@ -1,5 +1,7 @@
 package Inicio.Kamban;
 
+import Inicio.Menu.Classes.State;
+
 import java.time.LocalDateTime;
 
 public class WorkUnit {

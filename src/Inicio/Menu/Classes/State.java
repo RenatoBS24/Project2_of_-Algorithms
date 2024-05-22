@@ -1,4 +1,4 @@
-package Inicio.Kamban;
+package Inicio.Menu.Classes;
 
 public enum State {
     Create,

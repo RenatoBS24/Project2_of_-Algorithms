@@ -1,8 +1,6 @@
 package Inicio.Menu;
 
-import Inicio.Menu.Classes.GetUsers;
-import Inicio.Menu.Classes.ImportProject;
-import Inicio.Menu.Classes.User;
+import Inicio.Menu.Classes.*;
 import Lists.MySinglyLinkedList.SinglyLinkedList;
 import org.xml.sax.SAXException;
 
@@ -19,6 +17,10 @@ public class Kanban extends JFrame {
     private JButton newProjectButton;
     private JButton fileUploadButton;
     private JComboBox Users;
+    private JTextField TaskName;
+    private JButton registrarTareaButton;
+    private JComboBox estados;
+    private JComboBox prioridades;
     String dato = "";
     public Kanban(){
         setContentPane(panel);
@@ -28,12 +30,21 @@ public class Kanban extends JFrame {
         pack();
         setSize(1073, 542);
         setLocationRelativeTo(null);
+        String[] estado = {"","Creada","Asignado","En progreso","Terminada","Aprobada"};
+        String [] prioridad = {"1","2","3","4","5"};
         try {
             SinglyLinkedList<User> user = GetUsers.get();
             System.out.println(user.size());
+            Users.addItem("");
             for(int i = 0; i<user.size(); i++){
                 User usuario = user.get(i);
                 Users.addItem(usuario.getName());
+            }
+            for(int i = 0; i<estado.length;i++ ){
+                estados.addItem(estado[i]);
+            }
+            for(int i = 0; i<prioridad.length;i++ ){
+                prioridades.addItem(prioridad[i]);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -60,6 +71,18 @@ public class Kanban extends JFrame {
                         throw new RuntimeException(ex);
                     }
                 }
+            }
+        });
+        registrarTareaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    User usuario = GetUsers.getUnityUser(String.valueOf(Users.getSelectedItem()));
+                    TaskRegister.Register(tabla,TaskName.getText(),usuario,prioridades.getSelectedIndex(), State.Approved);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+
             }
         });
     }

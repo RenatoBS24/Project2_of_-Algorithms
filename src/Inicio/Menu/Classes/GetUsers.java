@@ -24,6 +24,24 @@ public class GetUsers {
         }
         return users;
     }
+    public static User getUnityUser(String user) throws IOException {
+        User user1 = null;
+        File file = new File("C:\\Users\\DREP\\Documents\\UTP\\CICLO V\\Algoritmos y estructura de datos\\Project2_of_-Algorithms\\src\\Inicio\\Menu\\Classes\\Credentials.txt");
+        SinglyLinkedList<User>users = new SinglyLinkedList<>();
+        BufferedReader br = null;
+        br = new BufferedReader(new FileReader(file));
+        String line = br.readLine();
+        while (line != null) {
+            if(!line.equals("")){
+                String[] data = line.split(",");
+                if(data[0].equals(user)){
+                    user1 = new User(data[0], data[1], data[2]);
+                }
+            }
+            line = br.readLine();
+        }
+      return user1;
+    }
 
     public static void main(String[] args) {
         try {
