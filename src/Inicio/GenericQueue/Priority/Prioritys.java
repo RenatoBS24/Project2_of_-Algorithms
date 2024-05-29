@@ -6,93 +6,41 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class Prioritys {
-   /* private Comparator<Task> byNumLlegada=Comparator.comparing(Task::ge);//se organiza por orden de creación
-    private Comparator<Task> byPrioridad=Comparator.comparing(Task::getPriority);
-    private Comparator<Task> byUser = Comparator.comparing(Task::getUser);
-    private Comparator<Task> byHora = Comparator.comparing(Task::getStartTime);
+    public static  class ComparatorByUserName implements Comparator<Task>{
 
-    private Comparator ordenCreacion = byNumLlegada.thenComparing(byHora);
-    private Comparator ordenPrioridad = byPrioridad.thenComparing(byUser);
-    private Comparator ordenUser = byUser.thenComparing(byHora);
-    private Comparator ordenPrioriLlegada = byPrioridad.thenComparing(byNumLlegada);
-    private Comparator ordenLlegada = byNumLlegada.thenComparing(byHora);
-
-
-    private PriorityQueue<Task> catalago;
-    private PriorityQueue<Task> porHacer;
-    private PriorityQueue<Task> enProgreso;
-    private PriorityQueue<Task> porVerificar;
-    private PriorityQueue<Task> Hecho;
-
-
-    public PrioridadColas() {
-        catalago = new PriorityQueue<>(ordenCreacion);
-        porHacer = new PriorityQueue<>(ordenPrioridad);
-        enProgreso = new PriorityQueue<>(ordenUser);
-        porVerificar = new PriorityQueue<>(ordenPrioriLlegada);
-        Hecho = new PriorityQueue<>(ordenLlegada);
-    }
-
-    public void registrarTarea(Task task) {
-        if (task.getAssignedUser()==null || task.getAssignedUser().equals(" ")){
-            task.setStatusTask(Status.CREADA);
-            catalago.add(task);
-        }else {
-            task.setStatusTask(Status.ASIGNADA);
-            porHacer.add(task);
+        @Override
+        public int compare(Task t1, Task t2) {
+            return t1.getUser().getName().compareTo(t2.getUser().getName());
         }
     }
 
-    public void taskIniciada(Task task) {
-        if (task.getStatusTask()==Status.ASIGNADA){
-            porHacer.remove(task);
-            task.setStatusTask(Status.EN_PROCESO);
-            enProgreso.add(task);
-            System.out.println("se agrego a la columna en proceso ");
-        }else {
-            System.out.println("no puede iniciar porque no tiene asignado algun user");
-        }
+    private static Comparator<Task> byPrioridad=Comparator.comparing(Task::getPriority);
+    private static Comparator<Task> byUser = new ComparatorByUserName();
+    private static Comparator<Task> byHora = Comparator.comparing(Task::getStartTime);
+    private static Comparator<Task> bystate = Comparator.comparing(Task::getState);
+    private static Comparator porHacer = byPrioridad.thenComparing(byUser);
+    private static Comparator porVerificar = byPrioridad.thenComparing(byHora);
+    private static Comparator xd = byUser.thenComparing(byHora);
+
+    public static Comparator getXd() {
+        return xd;
     }
 
-    public void taskFinalizada(Task task) {
-        if (task.getStatusTask()==Status.EN_PROCESO){
-            enProgreso.remove(task);
-            task.setStatusTask(Status.TERMINADA);
-            porVerificar.add(task);
-            System.out.println("Se agregó a la columna de verificar");
-        }else {
-            System.out.println("no se puede agregar porque no esta en proceso");
-        }
+    public static Comparator<Task> getByPorVerificar(){
+        return porVerificar;
+    }
+    public static Comparator<Task> getByPrioridad() {
+        return byPrioridad;
     }
 
-    public void taskVerificada(Task task,boolean aprobada) {
-        if (task.getStatusTask()==Status.TERMINADA) {
-            if (aprobada) {
-                porVerificar.remove(task);
-                task.setStatusTask(Status.APROBADA);
-                Hecho.add(task);
-                System.out.println("se añadió a APROBADA");
-            } else {
-                porVerificar.remove(task);
-                task.setStatusTask(Status.ASIGNADA);
-                porHacer.remove(task);
-                System.out.println("no fue aprobada");
-            }
-        }else {
-            System.out.println("no se puede agregar porque no esta en terminada");
-        }
+    public static Comparator<Task> getByHora() {
+        return byHora;
+    }
+    public static Comparator getPorHacer() {
+        return porHacer;
     }
 
-    public void println(){
-        System.out.println("columna catalago");
-        System.out.println(catalago);
-        System.out.println("\ncolumna porHacer");
-        System.out.println(porHacer);
-        System.out.println("\ncolumna enProgreso");
-        System.out.println(enProgreso);
-        System.out.println("\ncolumna porVerificar");
-        System.out.println(porVerificar);
-        System.out.println("\ncolumna Hecho");
-        System.out.println(Hecho);
-    }*/
+    public static Comparator<Task> getByUser() {
+        return byUser;
+    }
 }

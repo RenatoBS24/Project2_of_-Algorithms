@@ -90,7 +90,8 @@ public class Kambam2  extends JFrame{
                     int opc = estados.getSelectedIndex();
                     System.out.println(opc);
                     JPanel seleccionPanel = map.get(opc);
-                    TaskRegister.Register(seleccionPanel,TaskName.getText(),usuario,prioridades.getSelectedIndex(), State.Approved);
+                    int priodidad = prioridades.getSelectedIndex()+1;
+                    TaskRegister.Register(seleccionPanel,TaskName.getText(),usuario,priodidad, State.Approved,opc);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

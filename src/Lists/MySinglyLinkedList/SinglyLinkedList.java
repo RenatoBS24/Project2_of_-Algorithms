@@ -1,5 +1,4 @@
 package Lists.MySinglyLinkedList;
-
 import java.util.Iterator;
 import java.util.Objects;
 import static java.lang.reflect.Array.newInstance;
@@ -85,7 +84,7 @@ public class SinglyLinkedList<E> implements Iterable<E> {
             throw new Exception("Index is out of range!");
         }
 
-        if (numberOfNodes == 0 && index == 0) {
+        if ( index == 0) {
             head = newNode;
         } else {
             Node<E> previous = getNode(index - 1);
@@ -223,10 +222,11 @@ public class SinglyLinkedList<E> implements Iterable<E> {
         return array;
     }
     public boolean isEmpty(){
-        return size()<=0;
+        return size()==0;
     }
     public void clear(){
         head = null;
         numberOfNodes = 0;
     }
+
 }

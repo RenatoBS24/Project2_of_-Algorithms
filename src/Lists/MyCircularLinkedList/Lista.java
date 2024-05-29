@@ -196,5 +196,11 @@ public class Lista<T> implements Iterable<T> {
         inicio = null;
         numerodeNodos = 0;
     }
+    public void offer(T element){
+        Nodo<T> newnodo = new Nodo<>(element);
+        if(isEmpty()){
+            inicio = newnodo;
+        }
+    }
 
 }
