@@ -214,6 +214,18 @@ public class DoubleCircularLinkedList<T> implements Iterable<T>{
             add(array[1]);
         }
     }
+    public Object getNode(int index){
+
+        if (index<0 || index>size()){
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+
+        Node<T> current=head;
+        for (int i = 0; i < index; i++) {
+            current = current.getNext();
+        }
+        return current.getDato();
+    }
 
 
 }

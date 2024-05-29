@@ -39,7 +39,7 @@ public class Login extends JFrame {
                     if(validateCredentials.Validate(userTextField.getText(),new String(passwordPasswordField.getPassword()),report)){
                         Login.this.dispose();
                         System.out.println("Welcome");
-                        Kanban k = new Kanban();
+                        Kambam2 k = new Kambam2();
                         k.text(userTextField.getText());
                         k.setVisible(true);
                     }else {

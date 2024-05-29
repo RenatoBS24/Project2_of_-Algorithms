@@ -131,7 +131,7 @@ public class SinglyLinkedList<E> implements Iterable<E> {
     }
 
 
-    public void remove(int index) {
+    public void remove(int index) throws Exception {
         if (index < 0 || index >= numberOfNodes) {
             throw new IllegalArgumentException("Index out of bounds");
         }
@@ -156,11 +156,31 @@ public class SinglyLinkedList<E> implements Iterable<E> {
         }
     }
 
-    public void removeFirst() {
+    public void removeFirst() throws Exception {
+        if(size() == 0){
+            throw new Exception("La lista esta vacia");
+        }
         Node<E> auxiliar = head;
         head = head.getNext();
         auxiliar.setNext(null);
         numberOfNodes--;
+    }
+    public E dequeue() throws Exception{
+        if(size() == 0){
+            throw new Exception("La lista esta vacia");
+        }
+        Node<E> auxiliar = head;
+        E element = auxiliar.getElement();
+        head = head.getNext();
+        auxiliar.setNext(null);
+        numberOfNodes--;
+        return element;
+    }
+    public E getFirst() throws Exception{
+        if(size() == 0){
+            throw new Exception("La cola esta vacia");
+        }
+        return head.getElement();
     }
 
     public void removeLast() {
@@ -201,5 +221,12 @@ public class SinglyLinkedList<E> implements Iterable<E> {
             end = end.getNext();
         }
         return array;
+    }
+    public boolean isEmpty(){
+        return size()<=0;
+    }
+    public void clear(){
+        head = null;
+        numberOfNodes = 0;
     }
 }
