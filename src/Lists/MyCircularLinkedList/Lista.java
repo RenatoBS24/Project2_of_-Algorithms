@@ -1,5 +1,7 @@
 package Lists.MyCircularLinkedList;
 
+import Lists.MySinglyLinkedList.SinglyLinkedList;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -131,17 +133,20 @@ public class Lista<T> implements Iterable<T> {
        numerodeNodos--;
     }
 
-    public void removeLast() {
+    public T removeLast() {
        if(size() == 0){
            throw new IndexOutOfBoundsException("El indice no es valido");
        } else if (size() == 1) {
            inicio = null;
        }
        Nodo<T> previo = getNodo(numerodeNodos - 1);
+        T elemento = previo.getElemento();
        previo.setSiguiente(inicio);
         numerodeNodos--;
 
+        return elemento;
     }
+
     public void remove(int pos) throws Exception{
         if(pos<0 || pos>=size()){
              throw new Exception("El indice no es valido");
@@ -201,6 +206,35 @@ public class Lista<T> implements Iterable<T> {
         if(isEmpty()){
             inicio = newnodo;
         }
+    }
+
+    public T dequeue() throws Exception{
+        if(size() == 0){
+            throw new Exception("La lista esta vacia");
+        }
+        Lista.Nodo<T> auxiliar = inicio;
+        T element = auxiliar.getElemento();
+        inicio = inicio.getSiguiente();
+        auxiliar.setSiguiente(null);
+        numerodeNodos--;
+        return element;
+    }
+
+    public T getFirst() throws Exception{
+        if(size() == 0){
+            throw new Exception("La cola esta vacia");
+        }
+        return inicio.getElemento();
+    }
+    public T getLast() throws Exception {
+        if (size() == 0) {
+            throw new Exception("La lista está vacía");
+        }
+        Nodo<T> current = inicio;
+        while (current.getSiguiente() != null) {
+            current = current.getSiguiente();
+        }
+        return current.getElemento();
     }
 
 }
