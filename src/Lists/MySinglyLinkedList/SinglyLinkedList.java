@@ -182,9 +182,10 @@ public class SinglyLinkedList<E> implements Iterable<E> {
         return head.getElement();
     }
 
-    public void removeLast() {
+    public void removeLast(){
         try {
             Node<E> previousNode = getNode(numberOfNodes - 2);
+            assert previousNode != null;
             previousNode.setNext(null);
             numberOfNodes--;
         } catch (Exception e) {
