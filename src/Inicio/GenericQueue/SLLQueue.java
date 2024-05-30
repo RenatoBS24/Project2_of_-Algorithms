@@ -19,15 +19,17 @@ public class SLLQueue<T> implements Iterable<T>{
 
 
     public void enqueue(T e) throws Exception {
+        System.out.println("elementos"+e);
             if(elements.isEmpty()){
                 elements.add(e);
             }
             else {
                 try{
                     int index = 0;
-                    while (index< elements.size() && comparator.compare(e,elements.get(index)) >0){
+                    while (index< elements.size() && comparator.compare(e,elements.get(index)) >=0){
                         index ++;
                     }
+                    System.out.println("este es xd"+index);
                     if (index >= elements.size()) {
                         elements.add(e);
                     } else {
@@ -40,7 +42,7 @@ public class SLLQueue<T> implements Iterable<T>{
     }
 
     public T dequeue() throws Exception {
-        return elements.dequeue();
+        return elements.removeFirst();
     }
 
     public T peek() throws Exception {

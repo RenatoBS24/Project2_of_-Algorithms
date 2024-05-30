@@ -4,14 +4,15 @@ import java.time.LocalDateTime;
 
 public class Task {
     private int id;
+    private static int idCounter = 0;
     private String name;
     private LocalDateTime startTime;
     private State state;
     private int priority;
     private User user;
 
-    public Task(int id, User user, State state, String name, int priority) {
-        this.id = id;
+    public Task(User user, State state, String name, int priority) {
+        this.id = ++idCounter;
         this.user = user;
         this.state = state;
         this.name = name;

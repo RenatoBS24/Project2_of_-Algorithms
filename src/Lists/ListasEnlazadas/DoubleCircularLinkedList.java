@@ -155,17 +155,20 @@ public class DoubleCircularLinkedList<T> implements Iterable<T>{
 
     }
 
-    private void removeFirst(){
+    public T  removeFirst(){
+        T element = null;
         if (!isEmpty()){
-            if (numberOfNodes==1){
+            if (numberOfNodes==0){
                 head=null;
             }else {
+                element = head.getDato();
                 head.getNext().setPreve(head.getPreve());
                 head.getPreve().setNext(head.getNext());
                 head=head.getNext();
             }
             numberOfNodes--;
         }
+        return element;
     }
 
     private void removeLast(){
@@ -226,6 +229,29 @@ public class DoubleCircularLinkedList<T> implements Iterable<T>{
         }
         return current.getDato();
     }
+    public void clear(){
+        head = null;
+        numberOfNodes = 0;
+    }
+    public T getFirst() {
+        if (isEmpty()){
+            throw new NoSuchElementException();
+        }
+        return head.getDato();
+    }
+    public Object get(int index){
+
+        if (index<0 || index>size()){
+            throw new IndexOutOfBoundsException("Index out of bounds");
+        }
+
+        Node<T> current=head;
+        for (int i = 0; i < index; i++) {
+            current = current.getNext();
+        }
+        return current.getDato();
+    }
+
 
 
 }

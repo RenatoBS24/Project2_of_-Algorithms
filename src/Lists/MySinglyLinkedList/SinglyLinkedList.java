@@ -155,14 +155,14 @@ public class SinglyLinkedList<E> implements Iterable<E> {
         }
     }
 
-    public void removeFirst() throws Exception {
+    public E removeFirst() throws Exception {
         if(size() == 0){
             throw new Exception("La lista esta vacia");
         }
-        Node<E> auxiliar = head;
+        E element = head.getElement();
         head = head.getNext();
-        auxiliar.setNext(null);
         numberOfNodes--;
+        return element;
     }
     public E dequeue() throws Exception{
         if(size() == 0){

@@ -21,7 +21,7 @@ public class Lista<T> implements Iterable<T> {
                 }
                 try {
                     T data = get(index);
-                    index = (index + 1) % size(); // Manejo circular
+                    index = (index + 1) % size();
                     return data;
                 } catch (Exception e) {
                     throw new RuntimeException(e);
@@ -131,17 +131,19 @@ public class Lista<T> implements Iterable<T> {
        numerodeNodos--;
     }
 
-    public void removeLast() {
-       if(size() == 0){
-           throw new IndexOutOfBoundsException("El indice no es valido");
-       } else if (size() == 1) {
-           inicio = null;
-       }
-       Nodo<T> previo = getNodo(numerodeNodos - 1);
-       previo.setSiguiente(inicio);
+    public T removeLast() {
+        if(size() == 0){
+            throw new IndexOutOfBoundsException("El indice no es valido");
+        } else if (size() == 1) {
+            inicio = null;
+        }
+        Nodo<T> previo = getNodo(numerodeNodos - 1);
+        T elemento = previo.getElemento();
+        previo.setSiguiente(inicio);
         numerodeNodos--;
-
+        return elemento;
     }
+
     public void remove(int pos) throws Exception{
         if(pos<0 || pos>=size()){
              throw new Exception("El indice no es valido");
@@ -201,6 +203,12 @@ public class Lista<T> implements Iterable<T> {
         if(isEmpty()){
             inicio = newnodo;
         }
+    }
+    public T getFirst() throws Exception{
+        if(size() == 0){
+            throw new Exception("La cola esta vacia");
+        }
+        return inicio.getElemento();
     }
 
 }

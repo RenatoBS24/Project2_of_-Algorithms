@@ -1,5 +1,6 @@
 package Inicio.Menu;
 
+import Inicio.GenericQueue.Priority.MyQueue;
 import Inicio.Menu.Classes.*;
 import Lists.MySinglyLinkedList.SinglyLinkedList;
 import javax.swing.*;
@@ -23,6 +24,10 @@ public class Kambam2  extends JFrame{
     private JPanel Panel3;
     private JPanel Panel4;
     private JPanel Panel5;
+    private JButton deshacerButton;
+    private JComboBox Tareas;
+    private JButton resolverButton;
+    private JPanel panelP;
     private String dato = "";
 
     public Kambam2() {
@@ -31,9 +36,10 @@ public class Kambam2  extends JFrame{
         setTitle("Kanban");
         setVisible(false);
         pack();
-        setSize(1073, 542);
+        setSize(1360, 720);
         setLocationRelativeTo(null);
-        String[] estado = {"Creada","Asignado","En progreso","Terminada","Aprobada"};
+        setResizable(false);
+        String[] estado = {"Creada","Asignada"};
         String [] prioridad = {"1","2","3","4","5"};
         try {
             SinglyLinkedList<User> user = GetUsers.get();
@@ -91,13 +97,25 @@ public class Kambam2  extends JFrame{
                     System.out.println(opc);
                     JPanel seleccionPanel = map.get(opc);
                     int priodidad = prioridades.getSelectedIndex()+1;
-                    TaskRegister.Register(seleccionPanel,TaskName.getText(),usuario,priodidad, State.Approved,opc);
+                    MyQueue<Task> tarea = TaskRegister.Register(seleccionPanel,TaskName.getText(),usuario,priodidad, State.Approved,opc);
+                    for (Task tarea1:tarea){
+                         Tareas.addItem(tarea1);
+                    }
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
             }
         });
 
+        TaskName.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(Users.getSelectedIndex()==1){
+                    estados.removeAllItems();
+                    estados.addItem("Creada");
+                }
+            }
+        });
     }
     public void text(String text){
         dato = text;
