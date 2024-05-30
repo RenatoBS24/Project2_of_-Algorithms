@@ -78,6 +78,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return name;
+        return name +" "+ user.getName();
     }
 }

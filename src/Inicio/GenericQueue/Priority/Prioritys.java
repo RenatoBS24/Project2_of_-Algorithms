@@ -14,7 +14,7 @@ public class Prioritys {
         }
     }
 
-    private static Comparator<Task> byPrioridad=Comparator.comparing(Task::getPriority);
+    private static Comparator<Task> byPrioridad=Comparator.comparing(Task::getPriority).reversed();
     private static Comparator<Task> byUser = new ComparatorByUserName();
     private static Comparator<Task> byHora = Comparator.comparing(Task::getStartTime);
     private static Comparator<Task> bystate = Comparator.comparing(Task::getState);

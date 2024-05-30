@@ -1,14 +1,13 @@
 package Inicio.Menu;
-
 import Inicio.GenericQueue.Priority.MyQueue;
 import Inicio.Menu.Classes.*;
 import Lists.MySinglyLinkedList.SinglyLinkedList;
-import org.xml.sax.SAXException;
-
 import javax.swing.*;
-import javax.xml.parsers.ParserConfigurationException;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -32,13 +31,14 @@ public class Kambam2  extends JFrame{
     private JButton resolverButton;
     private JPanel panelP;
     private JButton exportarButton;
+    private JButton resolverTareaButton;
     private String dato = "";
 
     public Kambam2() {
         setContentPane(panel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Kanban");
-        setVisible(false);
+        setVisible(true);
         pack();
         setSize(1360, 720);
         setLocationRelativeTo(null);
@@ -105,6 +105,16 @@ public class Kambam2  extends JFrame{
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                Component[] components = Panel1.getComponents();
+                for (int i = 0; i < components.length; i++) {
+                    final JLabel label = (JLabel) components[i];
+                    components[i].addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            label.setForeground(Color.RED);
+                        }
+                    });
+                }
 
             }
         });
@@ -121,22 +131,57 @@ public class Kambam2  extends JFrame{
         resolverButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Task task = (Task)Tareas.getSelectedItem();
-                TaskChange.change(task,Panel3);
+                Component[] components = Panel1.getComponents();
+                for (Component component : components) {
+                    if (component instanceof JLabel) {
+                        JLabel label = (JLabel) component;
+                        if (label.getForeground().equals(Color.RED)) {
+                            GridLayout layout = new GridLayout(20,1);
+                            Panel3.setLayout(layout);
+                            Panel3.add(new JLabel(label.getText()));
+                            Panel1.remove(label);
+                            revalidate();
+                            repaint();
+                            break;
+                        }
+                    }
+                }
+                Component[] components2 = Panel3.getComponents();
+                for (int i = 0; i < components2.length; i++) {
+                    final JLabel label = (JLabel) components2[i];
+                    components2[i].addMouseListener(new MouseAdapter() {
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            label.setForeground(Color.RED);
+                        }
+                    });
+                }
             }
         });
         exportarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*try {
-                    ExportarFile.exportFile();
-                } catch (ParserConfigurationException ex) {
-                    throw new RuntimeException(ex);
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                } catch (SAXException ex) {
-                    throw new RuntimeException(ex);
-                }*/
+
+            }
+        });
+        resolverTareaButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Component[] components = Panel3.getComponents();
+                for (Component component : components) {
+                    if (component instanceof JLabel) {
+                        JLabel label = (JLabel) component;
+                        if (label.getForeground().equals(Color.RED)) {
+                            GridLayout layout = new GridLayout(20,1);
+                            Panel4.setLayout(layout);
+                            Panel4.add(new JLabel(label.getText()));
+                            Panel3.remove(label);
+                            revalidate();
+                            repaint();
+                            break;
+                        }
+                    }
+                }
             }
         });
     }

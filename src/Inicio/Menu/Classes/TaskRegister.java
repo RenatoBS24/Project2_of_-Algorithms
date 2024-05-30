@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class TaskRegister {
     private static MyQueue<Task> tasksByHora = new MyQueue<>(Prioritys.getByHora());
-    private static MyQueue<Task> tasksPorHacer = new MyQueue<>(Prioritys.getByPrioridad());
+    private static MyQueue<Task> tasksPorHacer = new MyQueue<>(Prioritys.getPorHacer());
     public static MyQueue<Task> Register(JPanel panel,String name,User user,int priority,State state,int opc){
         if (panel == null) {
             System.out.println("xd");
@@ -28,7 +28,7 @@ public class TaskRegister {
                         System.out.println(task1);
                         JLabel label = new JLabel();
                         label.setBorder(new LineBorder(Color.black));
-                        label.setText(task1.getName());
+                        label.setText(task1.toString());
                         panel.add(label);
                     }
                     panel.revalidate();
@@ -39,7 +39,7 @@ public class TaskRegister {
                         System.out.println(task1);
                         JLabel label = new JLabel();
                         label.setBorder(new LineBorder(Color.black));
-                        label.setText(task1.getName());
+                        label.setText(task1.toString());
                         panel.add(label);
                     }
                     panel.revalidate();

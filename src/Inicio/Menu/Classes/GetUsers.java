@@ -42,12 +42,4 @@ public class GetUsers {
         }
       return user1;
     }
-
-    public static void main(String[] args) {
-        try {
-            get();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
