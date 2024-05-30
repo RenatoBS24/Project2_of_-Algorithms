@@ -3,7 +3,10 @@ package Inicio.Menu;
 import Inicio.GenericQueue.Priority.MyQueue;
 import Inicio.Menu.Classes.*;
 import Lists.MySinglyLinkedList.SinglyLinkedList;
+import org.xml.sax.SAXException;
+
 import javax.swing.*;
+import javax.xml.parsers.ParserConfigurationException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -28,6 +31,7 @@ public class Kambam2  extends JFrame{
     private JComboBox Tareas;
     private JButton resolverButton;
     private JPanel panelP;
+    private JButton exportarButton;
     private String dato = "";
 
     public Kambam2() {
@@ -74,17 +78,14 @@ public class Kambam2  extends JFrame{
                 int selected = chooser.showOpenDialog(panel);
                 if (selected == JFileChooser.APPROVE_OPTION) {
                     File file = chooser.getSelectedFile();
-                    /*try {
-                        ImportProject.Import(file,tabla);
-                    } catch (ParserConfigurationException | IOException | SAXException ex) {
-                        throw new RuntimeException(ex);
-                    }*/
+
                 }
             }
         });
         registrarTareaButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                panelP.setSize(1000,720);
                 try {
                     User usuario = GetUsers.getUnityUser(String.valueOf(Users.getSelectedItem()));
                     HashMap<Integer,JPanel>map = new HashMap();
@@ -99,11 +100,12 @@ public class Kambam2  extends JFrame{
                     int priodidad = prioridades.getSelectedIndex()+1;
                     MyQueue<Task> tarea = TaskRegister.Register(seleccionPanel,TaskName.getText(),usuario,priodidad, State.Approved,opc);
                     for (Task tarea1:tarea){
-                         Tareas.addItem(tarea1);
+                         Tareas.addItem(tarea1.toString());
                     }
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+
             }
         });
 
@@ -114,6 +116,27 @@ public class Kambam2  extends JFrame{
                     estados.removeAllItems();
                     estados.addItem("Creada");
                 }
+            }
+        });
+        resolverButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Task task = (Task)Tareas.getSelectedItem();
+                TaskChange.change(task,Panel3);
+            }
+        });
+        exportarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                /*try {
+                    ExportarFile.exportFile();
+                } catch (ParserConfigurationException ex) {
+                    throw new RuntimeException(ex);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (SAXException ex) {
+                    throw new RuntimeException(ex);
+                }*/
             }
         });
     }

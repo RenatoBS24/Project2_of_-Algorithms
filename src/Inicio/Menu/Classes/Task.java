@@ -19,6 +19,14 @@ public class Task {
         startTime = LocalDateTime.now();
         this.priority = priority;
     }
+    public Task(int id ,String user, State state, String name, int priority, LocalDateTime fecha) {
+        this.id = id;
+        this.user.setName(user);
+        this.state = state;
+        this.name = name;
+        startTime = fecha;
+        this.priority = priority;
+    }
 
     public int getId() {
         return id;
@@ -70,13 +78,6 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", startTime=" + startTime +
-                ", state=" + state +
-                ", priority=" + priority +
-                ", user=" + user +
-                '}';
+        return name;
     }
 }

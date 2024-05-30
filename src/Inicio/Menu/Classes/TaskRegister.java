@@ -16,7 +16,7 @@ public class TaskRegister {
             throw new IllegalArgumentException("Panel cannot be null");
 
         }
-        GridLayout layout = new GridLayout(100,1);
+        GridLayout layout = new GridLayout(20,1);
         panel.setLayout(layout);
         Task task = new Task(user,state,name,priority);
         panel.removeAll();
